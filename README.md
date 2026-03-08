@@ -25,6 +25,7 @@ python3 spark-gpu-throttle-check.py
 | `-n`, `--samples` | 20 | Number of samples to collect |
 | `-t`, `--threshold` | 1400 | Clock threshold (MHz) below which throttling is suspected |
 | `-w`, `--warmup` | 2.0 | Warm-up time (seconds) before sampling begins |
+| `-q`, `--quiet` | off | Suppress sample table and details; print only a PASS/FAIL result line |
 
 ### Examples
 
@@ -40,6 +41,9 @@ python3 spark-gpu-throttle-check.py -t 1000
 
 # Longer warm-up if the first sample still shows low power draw
 python3 spark-gpu-throttle-check.py -w 3
+
+# Quiet mode for scripting — prints only PASS/FAIL result line
+python3 spark-gpu-throttle-check.py -q
 ```
 
 ### Exit Codes
@@ -50,7 +54,7 @@ python3 spark-gpu-throttle-check.py -w 3
 This makes it easy to use in scripts:
 
 ```bash
-python3 spark-gpu-throttle-check.py && echo "GPU clocks OK" || echo "Possible PD issue detected"
+python3 spark-gpu-throttle-check.py -q && echo "GPU clocks OK" || echo "Possible PD issue detected"
 ```
 
 ## Sample Output
