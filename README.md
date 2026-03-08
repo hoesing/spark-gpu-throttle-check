@@ -4,7 +4,7 @@ A diagnostic tool for detecting GPU clock throttling on NVIDIA DGX Spark (and re
 
 ## The Problem
 
-DGX Spark systems can occasionally end up in a degraded power state where the GPU remains in P0 state but its clock speed is capped far below normal — typically around 850 MHz instead of the expected ~2400 MHz. This causes significant performance degradation that can be difficult to diagnose since the GPU otherwise appears healthy. Faulty USB PD negotiation with the power brick is a suspected cause.
+DGX Spark systems can occasionally end up in a degraded power state where the GPU remains in P0 state but its clock speed is capped far below normal — typically below 850 MHz instead of the expected ~2400 MHz. This causes significant performance degradation that can be difficult to diagnose since the GPU otherwise appears healthy. Faulty USB PD negotiation with the power brick is a suspected cause.
 
 ## What This Tool Does
 
