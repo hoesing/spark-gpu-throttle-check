@@ -1,6 +1,6 @@
 # spark-gpu-throttle-check
 
-A diagnostic tool for detecting GPU clock throttling on NVIDIA DGX Spark systems suspected to be caused by bad USB Power Delivery (PD) negotiation.
+A diagnostic tool for detecting GPU clock throttling on NVIDIA DGX Spark (and related GB10) systems suspected to be caused by bad USB Power Delivery (PD) negotiation.
 
 ## The Problem
 
