@@ -36,7 +36,7 @@ python3 spark-gpu-throttle-check.py
 # Longer run with more samples
 python3 spark-gpu-throttle-check.py -n 50
 
-# Lower threshold for a less strict check
+# More lenient check (only flag if below 1000 MHz)
 python3 spark-gpu-throttle-check.py -t 1000
 
 # Longer warm-up if the first sample still shows low power draw
