@@ -196,7 +196,7 @@ def run_test(num_samples: int, threshold_mhz: float, warmup: float, quiet: bool)
         print(f"\nWarming up GPU ({warmup:.1f}s)...")
     time.sleep(warmup)
 
-    if not load_ready.is_set():
+    if not load_ready.wait(timeout=10):
         print("ERROR: GPU load failed to start — see error above.")
         stop_event.set()
         load_thread.join(timeout=5)
