@@ -313,6 +313,13 @@ def main():
                         help="Suppress sample table and details; print only PASS/FAIL result line")
     args = parser.parse_args()
 
+    if args.samples < 1:
+        parser.error("--samples must be at least 1")
+    if args.threshold <= 0:
+        parser.error("--threshold must be greater than 0")
+    if args.warmup < 0:
+        parser.error("--warmup cannot be negative")
+
     sys.exit(run_test(args.samples, args.threshold, args.warmup, args.quiet))
 
 
