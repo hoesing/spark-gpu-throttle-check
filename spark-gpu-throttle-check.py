@@ -189,15 +189,11 @@ def run_test(num_samples: int, threshold_mhz: float, warmup: float, quiet: bool)
     load_ready = threading.Event()
     load_thread = threading.Thread(target=gpu_load, args=(stop_event, load_ready), daemon=True)
 
-    if not quiet:
-        print(f"\nCollecting {num_samples} samples under load (0.5s interval)...")
-        print(f"Threshold: {threshold_mhz:.0f} MHz\n")
-        print(f"  {'#':>5s}  {'Clock (MHz)':>11s}  {'Max (MHz)':>9s}  {'PState':>6s}  {'Power (W)':>9s}")
-        print(f"  {'─' * 5}  {'─' * 11}  {'─' * 9}  {'─' * 6}  {'─' * 9}")
-
     load_thread.start()
 
     # Let GPU ramp up briefly before we start recording
+    if not quiet and warmup > 0:
+        print(f"\nWarming up GPU ({warmup:.1f}s)...")
     time.sleep(warmup)
 
     if not load_ready.is_set():
@@ -205,6 +201,12 @@ def run_test(num_samples: int, threshold_mhz: float, warmup: float, quiet: bool)
         stop_event.set()
         load_thread.join(timeout=5)
         sys.exit(1)
+
+    if not quiet:
+        print(f"\nCollecting {num_samples} samples under load (0.5s interval)...")
+        print(f"Threshold: {threshold_mhz:.0f} MHz\n")
+        print(f"  {'#':>5s}  {'Clock (MHz)':>11s}  {'Max (MHz)':>9s}  {'PState':>6s}  {'Power (W)':>9s}")
+        print(f"  {'─' * 5}  {'─' * 11}  {'─' * 9}  {'─' * 6}  {'─' * 9}")
 
     samples = []
     try:
