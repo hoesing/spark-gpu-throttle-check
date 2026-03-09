@@ -71,6 +71,8 @@ GPU state at idle:
   P-state:     P8
   Power:       4.5 W
 
+Warming up GPU (2.0s)...
+
 Collecting 20 samples under load (0.5s interval)...
 Threshold: 1400 MHz
 
